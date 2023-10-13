@@ -1,0 +1,48 @@
+{
+    "expo": {
+        "name": "KortTouk Beta",
+        "slug": "korttouk_beta",
+        "version": "1.0.12",
+        "orientation": "portrait",
+        "userInterfaceStyle": "automatic",
+        "icon": "./assets/icon.png",
+        "splash": {
+            "image": "./assets/splash.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "jsEngine": "hermes",
+        "updates": {
+            "fallbackToCacheTimeout": 0
+        },
+        "assetBundlePatterns": [
+            "**/*"
+        ],
+        "ios": {
+            "bundleIdentifier": "dev.korttouk.mobile",
+            "supportsTablet": true,
+            "infoPlist": {
+                "NSFaceIDUsageDescription": "Allow user to secure access to the app"
+            },
+            "jsEngine": "jsc"
+        },
+        "android": {
+            "package": "dev.korttouk.mobile",
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/adaptive-icon.png",
+                "backgroundColor": "#FFFFFF"
+            }
+        },
+        "web": {
+            "favicon": "./assets/favicon.png"
+        },
+        "extra": {
+            "database": "korttouk_beta",
+            "version": "beta",
+            "experienceId": "@bangkeut/korttouk_beta",
+            "eas": {
+                "projectId": "9034aed5-3607-460b-9143-f292e07d9c9a"
+            }
+        }
+    }
+}

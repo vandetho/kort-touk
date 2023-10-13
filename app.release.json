@@ -1,0 +1,45 @@
+{
+    "expo": {
+        "name": "KortTouk",
+        "slug": "korttouk",
+        "version": "1.0.12",
+        "orientation": "portrait",
+        "userInterfaceStyle": "automatic",
+        "icon": "./assets/icon.png",
+        "jsEngine": "hermes",
+        "splash": {
+            "image": "./assets/splash.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "updates": {
+            "fallbackToCacheTimeout": 0
+        },
+        "assetBundlePatterns": [
+            "**/*"
+        ],
+        "ios": {
+            "bundleIdentifier": "app.korttouk.mobile",
+            "supportsTablet": true,
+            "infoPlist": {
+                "NSFaceIDUsageDescription": "Allow user to secure access to the app"
+            },
+            "jsEngine": "jsc"
+        },
+        "android": {
+            "package": "app.korttouk.mobile",
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/adaptive-icon.png",
+                "backgroundColor": "#FFFFFF"
+            }
+        },
+        "web": {
+            "favicon": "./assets/favicon.png"
+        },
+        "extra": {
+            "database": "korttouk",
+            "version": "release",
+            "experienceId": "@bangkeut/korttouk"
+        }
+    }
+}

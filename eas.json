@@ -1,0 +1,50 @@
+{
+    "cli": {
+        "version": ">= 0.38.3"
+    },
+    "build": {
+        "development": {
+            "env": {
+                "APP_ENV": "development"
+            },
+            "android": {
+                "buildType": "apk"
+            },
+            "developmentClient": true,
+            "distribution": "internal",
+            "node": "16.15.0"
+        },
+        "preview": {
+            "env": {
+                "APP_ENV": "preview"
+            },
+            "android": {
+                "buildType": "apk"
+            },
+            "developmentClient": true,
+            "distribution": "internal",
+            "node": "16.15.0"
+        },
+        "production": {
+            "env": {
+                "APP_ENV": "production"
+            },
+            "android": {
+                "buildType": "apk"
+            },
+            "node": "16.15.0"
+        },
+        "release": {
+            "env": {
+                "APP_ENV": "release"
+            },
+            "android": {
+                "buildType": "apk"
+            },
+            "node": "16.15.0"
+        }
+    },
+    "submit": {
+        "release": {}
+    }
+}

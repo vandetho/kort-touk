@@ -5508,11 +5508,6 @@ expo-image-picker@~14.3.2:
   dependencies:
     expo-image-loader "~4.3.0"
 
-expo-in-app-purchases@~14.3.0:
-  version "14.3.0"
-  resolved "https://registry.yarnpkg.com/expo-in-app-purchases/-/expo-in-app-purchases-14.3.0.tgz#d29f5bed9091846cb5b5a363590f4b3986f88783"
-  integrity sha512-ZkBKC/TT7Yl7UTahE8IrutZEJLH2eTsKmwdMXOiaNsTBP16xD9SR+YFbQ3YXn/4O0vhl1RLSVwiIZ0sfEuOkxQ==
-
 expo-json-utils@~0.7.0:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/expo-json-utils/-/expo-json-utils-0.7.1.tgz#efe315c982113204be46419cbc26d4d9a2af145f"
@@ -5538,6 +5533,13 @@ expo-linking@~5.0.2:
     invariant "^2.2.4"
     qs "^6.11.0"
     url-parse "^1.5.9"
+
+expo-local-authentication@~13.4.1:
+  version "13.4.1"
+  resolved "https://registry.yarnpkg.com/expo-local-authentication/-/expo-local-authentication-13.4.1.tgz#908516d395530f6895d7980009e4c85cdcff5327"
+  integrity sha512-FWTUkMNo9aDT3cg02SWAcSFjTiDu20izhCn5CGwdtFNCBpPQUD0BJ/czhjrIFE70teMzE5wZUdbJuSKYonUaWA==
+  dependencies:
+    invariant "^2.2.4"
 
 expo-localization@~14.3.0:
   version "14.3.0"

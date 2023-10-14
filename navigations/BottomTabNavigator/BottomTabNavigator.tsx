@@ -4,12 +4,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Animated, Dimensions, GestureResponderEvent, TouchableWithoutFeedback, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { DashboardScreen, FullAppVersionScreen } from '@screens';
+import { DashboardScreen } from '@screens';
 import { PRIMARY } from '@theme';
 import { TemplateNavigator, TemplateStackParamList } from '@navigations/TemplateNavigator';
 import { LoanNavigator, LoanStackParamList } from '@navigations/LoanNavigator';
 import { SettingNavigator, SettingStackParamsList } from '@navigations/SettingNavigator';
-import { useApplication } from '@contexts';
 
 const { width } = Dimensions.get('window');
 const TAB_HEIGHT = 65;
@@ -64,7 +63,7 @@ const BottomTabButton: React.FunctionComponent<BottomTabButtonProps> = ({ iconNa
                 }}
             >
                 <Animated.View style={{ transform: [{ translateY: viewTranslate }] }}>
-                    <FontAwesome5 name={iconName} size={ICON_SIZE} color={isFocused ? PRIMARY : colors.text} />
+                    <FontAwesome5 name={iconName} size={ICON_SIZE} color={isFocused ? PRIMARY : colors.text}/>
                 </Animated.View>
                 <Animated.Text
                     style={{
@@ -137,12 +136,12 @@ export type BottomTabStackParamsList = {
 
 const BottomTabStack = createBottomTabNavigator<BottomTabStackParamsList>();
 
-interface BottomNavigatorProps {}
+interface BottomNavigatorProps {
+}
 
 const BottomTabNavigator = React.memo<BottomNavigatorProps>(() => {
     const tabTranslate = React.useRef(new Animated.Value(0)).current;
     const { t } = useTranslation();
-    const { isLite } = useApplication();
 
     return (
         <React.Fragment>
@@ -188,60 +187,31 @@ const BottomTabNavigator = React.memo<BottomNavigatorProps>(() => {
                         },
                     })}
                 />
-
-                {isLite ? (
-                    <BottomTabStack.Screen
-                        name="FullAppVersion"
-                        component={FullAppVersionScreen}
-                        options={{
-                            tabBarLabel: t('Loan'),
-                        }}
-                        listeners={() => ({
-                            tabPress: () => {
-                                Animated.parallel([
-                                    Animated.spring(tabTranslate, {
-                                        toValue: getWidth() * 2 + 45,
-                                        useNativeDriver: true,
-                                    }),
-                                ]).start();
-                            },
-                            focus: () => {
-                                Animated.parallel([
-                                    Animated.spring(tabTranslate, {
-                                        toValue: getWidth() * 2 + 45,
-                                        useNativeDriver: true,
-                                    }),
-                                ]).start();
-                            },
-                        })}
-                    />
-                ) : (
-                    <BottomTabStack.Screen
-                        name="LoanStack"
-                        component={LoanNavigator}
-                        options={{
-                            tabBarLabel: t('Loan'),
-                        }}
-                        listeners={() => ({
-                            tabPress: () => {
-                                Animated.parallel([
-                                    Animated.spring(tabTranslate, {
-                                        toValue: getWidth() * 2 + 45,
-                                        useNativeDriver: true,
-                                    }),
-                                ]).start();
-                            },
-                            focus: () => {
-                                Animated.parallel([
-                                    Animated.spring(tabTranslate, {
-                                        toValue: getWidth() * 2 + 45,
-                                        useNativeDriver: true,
-                                    }),
-                                ]).start();
-                            },
-                        })}
-                    />
-                )}
+                <BottomTabStack.Screen
+                    name="LoanStack"
+                    component={LoanNavigator}
+                    options={{
+                        tabBarLabel: t('Loan'),
+                    }}
+                    listeners={() => ({
+                        tabPress: () => {
+                            Animated.parallel([
+                                Animated.spring(tabTranslate, {
+                                    toValue: getWidth() * 2 + 45,
+                                    useNativeDriver: true,
+                                }),
+                            ]).start();
+                        },
+                        focus: () => {
+                            Animated.parallel([
+                                Animated.spring(tabTranslate, {
+                                    toValue: getWidth() * 2 + 45,
+                                    useNativeDriver: true,
+                                }),
+                            ]).start();
+                        },
+                    })}
+                />
                 <BottomTabStack.Screen
                     name="SettingStack"
                     component={SettingNavigator}

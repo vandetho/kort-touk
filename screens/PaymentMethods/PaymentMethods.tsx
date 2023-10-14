@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, TouchableOpacity, View } from 'react-native';
-import { useApplication, usePaymentMethods } from '@contexts';
+import { usePaymentMethods } from '@contexts';
 import { GradientIcon, Header, Text } from '@components';
 import { useTranslation } from 'react-i18next';
 import { useNavigation, useTheme } from '@react-navigation/native';
@@ -20,7 +20,6 @@ interface PaymentMethodsProps {}
 const PaymentMethods = React.memo<PaymentMethodsProps>(() => {
     const { t } = useTranslation();
     const { colors } = useTheme();
-    const { isLite } = useApplication();
     const navigation = useNavigation<NewPaymentMethodScreenNavigationProps>();
     const { allPaymentMethods } = usePaymentMethods();
     const { paymentMethodRepository } = useDatabaseConnection();
@@ -76,7 +75,7 @@ const PaymentMethods = React.memo<PaymentMethodsProps>(() => {
                 <Header
                     goBackTitle={t('back')}
                     headerRightIcon="check"
-                    onMiddleButtonPress={isLite ? undefined : onPressAdd}
+                    onMiddleButtonPress={onPressAdd}
                     headerMiddleIcon="plus"
                     headerMiddleTitle={t('add')}
                     headerRightTitle={t('save')}

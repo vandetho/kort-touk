@@ -9,7 +9,6 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { Language } from './components';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { SettingStackParamsList } from '@navigations/SettingNavigator/SettingNavigator';
-import { useApplication } from '@contexts';
 
 type RouteNames = 'Projects' | 'Categories' | 'PaymentMethods' | 'FullVersionApp';
 
@@ -17,12 +16,12 @@ type SettingStackNavigationProps = NativeStackNavigationProp<SettingStackParamsL
 
 const { height } = Dimensions.get('screen');
 
-interface SettingProps {}
+interface SettingProps {
+}
 
 const Setting: React.FunctionComponent<SettingProps> = () => {
     const { colors } = useTheme();
     const { t } = useTranslation();
-    const { isLite } = useApplication();
     const navigation = useNavigation<SettingStackNavigationProps>();
     const { width } = useWindowDimensions();
     const [state, setState] = React.useState<{ scrollEnabled: boolean; rated: boolean }>({
@@ -30,7 +29,7 @@ const Setting: React.FunctionComponent<SettingProps> = () => {
         rated: false,
     });
 
-    const onContentSizeChange = React.useCallback((contentWidth: number, contentHeight: number) => {
+    const onContentSizeChange = React.useCallback((_: number, contentHeight: number) => {
         setState((prevState) => ({ ...prevState, scrollEnabled: contentHeight > height }));
     }, []);
 
@@ -59,39 +58,37 @@ const Setting: React.FunctionComponent<SettingProps> = () => {
                     paddingHorizontal: 20,
                 }}
             >
-                <Language />
-                {!isLite && (
-                    <TouchableOpacity
-                        style={{
-                            backgroundColor: colors.card,
-                            padding: 15,
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            flexDirection: 'row',
-                            borderBottomWidth: 1,
-                            borderBottomColor: colors.border,
-                        }}
-                        onPress={() => onNavigate('Projects')}
-                    >
-                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                            <View
-                                style={{
-                                    backgroundColor: '#d2640a',
-                                    width: 35,
-                                    height: 35,
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    borderRadius: 5,
-                                    marginRight: 10,
-                                }}
-                            >
-                                <FontAwesome5 name="project-diagram" color="#FFFFFF" size={24} />
-                            </View>
-                            <Text>{t('projects')}</Text>
+                <Language/>
+                <TouchableOpacity
+                    style={{
+                        backgroundColor: colors.card,
+                        padding: 15,
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        flexDirection: 'row',
+                        borderBottomWidth: 1,
+                        borderBottomColor: colors.border,
+                    }}
+                    onPress={() => onNavigate('Projects')}
+                >
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        <View
+                            style={{
+                                backgroundColor: '#d2640a',
+                                width: 35,
+                                height: 35,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                borderRadius: 5,
+                                marginRight: 10,
+                            }}
+                        >
+                            <FontAwesome5 name="project-diagram" color="#FFFFFF" size={24}/>
                         </View>
-                        <GradientIcon name="chevron-right" />
-                    </TouchableOpacity>
-                )}
+                        <Text>{t('projects')}</Text>
+                    </View>
+                    <GradientIcon name="chevron-right"/>
+                </TouchableOpacity>
                 <TouchableOpacity
                     style={{
                         backgroundColor: colors.card,
@@ -116,11 +113,11 @@ const Setting: React.FunctionComponent<SettingProps> = () => {
                                 marginRight: 10,
                             }}
                         >
-                            <FontAwesome5 name="cubes" color="#FFFFFF" size={24} />
+                            <FontAwesome5 name="cubes" color="#FFFFFF" size={24}/>
                         </View>
                         <Text>{t('categories')}</Text>
                     </View>
-                    <GradientIcon name="chevron-right" />
+                    <GradientIcon name="chevron-right"/>
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={{
@@ -146,27 +143,25 @@ const Setting: React.FunctionComponent<SettingProps> = () => {
                                 marginRight: 10,
                             }}
                         >
-                            <FontAwesome5 name="money-check-alt" color="#FFFFFF" size={24} />
+                            <FontAwesome5 name="money-check-alt" color="#FFFFFF" size={24}/>
                         </View>
                         <Text>{t('payment_methods')}</Text>
                     </View>
-                    <GradientIcon name="chevron-right" />
+                    <GradientIcon name="chevron-right"/>
                 </TouchableOpacity>
-                {isLite && (
-                    <TouchableOpacity
-                        style={{
-                            backgroundColor: colors.card,
-                            padding: 15,
-                            justifyContent: 'center',
-                            flexDirection: 'row',
-                            borderBottomWidth: 1,
-                            borderBottomColor: colors.border,
-                        }}
-                        onPress={() => onNavigate('FullVersionApp')}
-                    >
-                        <GradientText style={{ marginHorizontal: 10 }}>{t('get_full_version')}</GradientText>
-                    </TouchableOpacity>
-                )}
+                <TouchableOpacity
+                    style={{
+                        backgroundColor: colors.card,
+                        padding: 15,
+                        justifyContent: 'center',
+                        flexDirection: 'row',
+                        borderBottomWidth: 1,
+                        borderBottomColor: colors.border,
+                    }}
+                    onPress={() => onNavigate('FullVersionApp')}
+                >
+                    <GradientText style={{ marginHorizontal: 10 }}>{t('get_full_version')}</GradientText>
+                </TouchableOpacity>
                 <TouchableOpacity
                     style={{
                         backgroundColor: colors.card,
@@ -177,7 +172,7 @@ const Setting: React.FunctionComponent<SettingProps> = () => {
                     onPress={onPressRate}
                 >
                     <GradientText style={{ marginHorizontal: 10 }}>{t('rate_app')}</GradientText>
-                    <GradientIcon name="star" />
+                    <GradientIcon name="star"/>
                 </TouchableOpacity>
                 <View
                     style={{
@@ -189,11 +184,11 @@ const Setting: React.FunctionComponent<SettingProps> = () => {
                     }}
                 >
                     <Text style={{ color: colors.text }}>{t('version')} : </Text>
-                    <Text style={{ color: colors.text }}>{Constants.manifest?.version}</Text>
+                    <Text style={{ color: colors.text }}>{Constants.expoConfig?.version}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'center', width, paddingVertical: 5 }}>
                     <Text style={{ color: colors.text }}>
-                        @{new Date().getFullYear()} &copy; {Constants.manifest?.name}
+                        @{new Date().getFullYear()} &copy; {Constants.expoConfig?.name}
                     </Text>
                 </View>
             </ScrollView>

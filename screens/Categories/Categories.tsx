@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, TouchableOpacity, View } from 'react-native';
-import { useApplication, useCategories } from '@contexts';
+import { useCategories } from '@contexts';
 import { GradientIcon, Header, Text } from '@components';
 import { useTranslation } from 'react-i18next';
 import { useNavigation, useTheme } from '@react-navigation/native';
@@ -20,7 +20,6 @@ interface CategoriesProps {}
 const Categories = React.memo<CategoriesProps>(() => {
     const { t } = useTranslation();
     const { colors } = useTheme();
-    const { isLite } = useApplication();
     const { allCategories } = useCategories();
     const navigation = useNavigation<NewCategoryScreenNavigationProps>();
     const { categoryRepository } = useDatabaseConnection();
@@ -78,7 +77,7 @@ const Categories = React.memo<CategoriesProps>(() => {
                 <Header
                     goBackTitle={t('back')}
                     headerRightIcon="check"
-                    onMiddleButtonPress={isLite ? undefined : onPressAdd}
+                    onMiddleButtonPress={onPressAdd}
                     headerMiddleIcon="plus"
                     headerMiddleTitle={t('add')}
                     headerRightTitle={t('save')}

@@ -7,7 +7,7 @@ import {
     HandlerStateChangeEvent,
     State,
 } from 'react-native-gesture-handler';
-import { useApplication, useProjects, useSearch } from '@contexts';
+import { useProjects, useSearch } from '@contexts';
 import { CARD_HEIGHT, ProjectCard } from './components';
 import Project from '@models/Project';
 import { useDatabaseConnection } from '@contexts/DatabaseConnectionContext';
@@ -18,7 +18,6 @@ interface ProjectListProps {}
 
 const ProjectListComponent: React.FunctionComponent<ProjectListProps> = () => {
     const { width } = useWindowDimensions();
-    const { isLite } = useApplication();
     const { projects, onSelect } = useProjects();
     const { projectRepository } = useDatabaseConnection();
     const { from, to, isSearch } = useSearch();
@@ -39,7 +38,7 @@ const ProjectListComponent: React.FunctionComponent<ProjectListProps> = () => {
     }, [currentIndex, onSelect, projects]);
 
     const setActiveIndex = React.useCallback(
-        (activeIndex) => {
+        (activeIndex: number) => {
             scrollXIndex.setValue(activeIndex);
             setCurrentIndex(activeIndex);
         },
@@ -48,7 +47,7 @@ const ProjectListComponent: React.FunctionComponent<ProjectListProps> = () => {
 
     const items = React.useMemo(() => {
         const items: Project[] = projects ? projects.filter((project) => !project.archived) : [];
-        if (items.length > 0 && isLite) {
+        if (items.length > 0) {
             return items;
         }
         items.push(
@@ -67,7 +66,7 @@ const ProjectListComponent: React.FunctionComponent<ProjectListProps> = () => {
         );
 
         return items;
-    }, [isLite, projectRepository, projects]);
+    }, [ projectRepository, projects]);
 
     const onHandlerLeftDirectionChange = React.useCallback(
         (event: HandlerStateChangeEvent<FlingGestureHandlerEventPayload>) => {
@@ -112,7 +111,7 @@ const ProjectListComponent: React.FunctionComponent<ProjectListProps> = () => {
         ({ item, index, children, style, ...props }) => {
             const newStyle = [style, { zIndex: projects.length - index, backgroundColor: 'red' }];
             return (
-                <View style={newStyle} index={index} {...props}>
+                <View style={newStyle} {...props}>
                     {children}
                 </View>
             );
